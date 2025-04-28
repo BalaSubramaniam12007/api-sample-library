@@ -1,0 +1,6 @@
+{
+  "api": "sample3",
+  "version": "1.0.0",
+  "description": "A test API template",
+  "endpoint": "/test"
+}
