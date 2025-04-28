@@ -3,7 +3,7 @@ name: Create Release on Push
 # Add permissions for the GITHUB_TOKEN
 permissions:
   contents: write  # Needed to create tags and commits
-  releases: write  # Needed to create releases
+  # releases: write is not a valid standalone permission; use contents: write for releases
 
 on:
   push:
