@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - 'apitemplates/**'
+      
+permissions:
+  contents: write 
 
 jobs:
   release:
