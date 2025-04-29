@@ -3,7 +3,7 @@ name: Release API Templates
 on:
   push:
     paths:
-      - '/apitemplates/**'
+      - 'apitemplates/**'
 
 jobs:
   release:
