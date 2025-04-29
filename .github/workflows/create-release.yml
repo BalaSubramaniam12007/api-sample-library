@@ -1,49 +1,37 @@
-name: Create Release on Push
-
-# Add permissions for the GITHUB_TOKEN
-permissions:
-  contents: write  # Needed to create tags and commits
-  # releases: write is not a valid standalone permission; use contents: write for releases
+name: Release API Templates
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - '/apitemplates/**'
 
 jobs:
-  create-release:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Generate version
-        id: version
-        run: echo "version=$(date +%Y%m%d%H%M%S)" >> $GITHUB_OUTPUT
-      - name: Create ZIP
-        run: |
-          if [ -d "apitemplates" ]; then
-            zip -r apitemplates.zip apitemplates/
-          else
-            echo "apitemplates/ directory not found, creating empty zip"
-            touch empty.txt
-            zip apitemplates.zip empty.txt
-          fi
+        uses: actions/checkout@v2
+
+      - name: Zip API Templates
+        run: zip -r apitemplates.zip ./apitemplates
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ steps.version.outputs.version }}
-          release_name: Release v${{ steps.version.outputs.version }}
+          tag_name: templates-${{ github.sha }}
+          release_name: API Templates Release ${{ github.sha }}
           draft: false
           prerelease: false
-      - name: Upload ZIP to Release
+
+      - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: apitemplates.zip
+          asset_path: ./apitemplates.zip
           asset_name: apitemplates.zip
           asset_content_type: application/zip
