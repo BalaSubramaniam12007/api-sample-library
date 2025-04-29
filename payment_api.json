@@ -1,0 +1,177 @@
+{
+  "info": {
+    "title": "Payment Gateway API",
+    "description": "API for processing payments, managing transactions, and handling refunds",
+    "tags": ["payments", "transactions", "refunds", "financial"]
+  },
+  "requests": [
+    {
+      "id": "payment_create",
+      "apiType": "rest",
+      "name": "Create Payment",
+      "description": "Process a new payment transaction",
+      "httpRequestModel": {
+        "method": "post",
+        "url": "https://api.example.com/v1/payments",
+        "headers": [
+          {"name": "Content-Type", "value": "application/json"},
+          {"name": "Authorization", "value": "Bearer YOUR_API_KEY"},
+          {"name": "Idempotency-Key", "value": "unique-request-id-123"}
+        ],
+        "params": [],
+        "isHeaderEnabledList": [true, true, true],
+        "isParamEnabledList": [],
+        "bodyContentType": "json",
+        "body": "{\n  \"amount\": 49.99,\n  \"currency\": \"USD\",\n  \"payment_method\": {\n    \"type\": \"card\",\n    \"card\": {\n      \"number\": \"4242424242424242\",\n      \"exp_month\": 12,\n      \"exp_year\": 2026,\n      \"cvc\": \"123\"\n    }\n  },\n  \"customer_id\": \"cust_9876\",\n  \"description\": \"Subscription payment\",\n  \"metadata\": {\n    \"order_id\": \"ord_5678\"\n  }\n}",
+        "query": null,
+        "formData": null
+      },
+      "responseStatus": 201,
+      "message": "Payment processed successfully",
+      "httpResponseModel": {
+        "statusCode": 201,
+        "headers": {
+          "Content-Type": "application/json",
+          "Content-Length": "489",
+          "Request-Id": "req_Nhk92JnqwsD3ZF"
+        },
+        "requestHeaders": {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer YOUR_API_KEY",
+          "Idempotency-Key": "unique-request-id-123"
+        },
+        "body": "{\n  \"id\": \"pay_28s9dj29djw9\",\n  \"object\": \"payment\",\n  \"amount\": 49.99,\n  \"amount_refunded\": 0,\n  \"currency\": \"USD\",\n  \"status\": \"succeeded\",\n  \"customer_id\": \"cust_9876\",\n  \"description\": \"Subscription payment\",\n  \"payment_method\": {\n    \"type\": \"card\",\n    \"card\": {\n      \"brand\": \"visa\",\n      \"last4\": \"4242\",\n      \"exp_month\": 12,\n      \"exp_year\": 2026\n    }\n  },\n  \"metadata\": {\n    \"order_id\": \"ord_5678\"\n  },\n  \"created_at\": \"2025-04-29T08:45:23Z\"\n}",
+        "formattedBody": "{\n  \"id\": \"pay_28s9dj29djw9\",\n  \"object\": \"payment\",\n  \"amount\": 49.99,\n  \"amount_refunded\": 0,\n  \"currency\": \"USD\",\n  \"status\": \"succeeded\",\n  \"customer_id\": \"cust_9876\",\n  \"description\": \"Subscription payment\",\n  \"payment_method\": {\n    \"type\": \"card\",\n    \"card\": {\n      \"brand\": \"visa\",\n      \"last4\": \"4242\",\n      \"exp_month\": 12,\n      \"exp_year\": 2026\n    }\n  },\n  \"metadata\": {\n    \"order_id\": \"ord_5678\"\n  },\n  \"created_at\": \"2025-04-29T08:45:23Z\"\n}",
+        "bodyBytes": null,
+        "time": 255000
+      },
+      "isWorking": false,
+      "sendingTime": null
+    },
+    {
+      "id": "payment_retrieve",
+      "apiType": "rest",
+      "name": "Retrieve Payment",
+      "description": "Get details of a specific payment",
+      "httpRequestModel": {
+        "method": "get",
+        "url": "https://api.example.com/v1/payments/pay_28s9dj29djw9",
+        "headers": [
+          {"name": "Authorization", "value": "Bearer YOUR_API_KEY"},
+          {"name": "Accept", "value": "application/json"}
+        ],
+        "params": [],
+        "isHeaderEnabledList": [true, true],
+        "isParamEnabledList": [],
+        "bodyContentType": "json",
+        "body": null,
+        "query": null,
+        "formData": null
+      },
+      "responseStatus": 200,
+      "message": "Payment details retrieved successfully",
+      "httpResponseModel": {
+        "statusCode": 200,
+        "headers": {
+          "Content-Type": "application/json",
+          "Content-Length": "489",
+          "Request-Id": "req_Jki93JQndzp3WR"
+        },
+        "requestHeaders": {
+          "Authorization": "Bearer YOUR_API_KEY",
+          "Accept": "application/json"
+        },
+        "body": "{\n  \"id\": \"pay_28s9dj29djw9\",\n  \"object\": \"payment\",\n  \"amount\": 49.99,\n  \"amount_refunded\": 0,\n  \"currency\": \"USD\",\n  \"status\": \"succeeded\",\n  \"customer_id\": \"cust_9876\",\n  \"description\": \"Subscription payment\",\n  \"payment_method\": {\n    \"type\": \"card\",\n    \"card\": {\n      \"brand\": \"visa\",\n      \"last4\": \"4242\",\n      \"exp_month\": 12,\n      \"exp_year\": 2026\n    }\n  },\n  \"metadata\": {\n    \"order_id\": \"ord_5678\"\n  },\n  \"created_at\": \"2025-04-29T08:45:23Z\"\n}",
+        "formattedBody": "{\n  \"id\": \"pay_28s9dj29djw9\",\n  \"object\": \"payment\",\n  \"amount\": 49.99,\n  \"amount_refunded\": 0,\n  \"currency\": \"USD\",\n  \"status\": \"succeeded\",\n  \"customer_id\": \"cust_9876\",\n  \"description\": \"Subscription payment\",\n  \"payment_method\": {\n    \"type\": \"card\",\n    \"card\": {\n      \"brand\": \"visa\",\n      \"last4\": \"4242\",\n      \"exp_month\": 12,\n      \"exp_year\": 2026\n    }\n  },\n  \"metadata\": {\n    \"order_id\": \"ord_5678\"\n  },\n  \"created_at\": \"2025-04-29T08:45:23Z\"\n}",
+        "bodyBytes": null,
+        "time": 125000
+      },
+      "isWorking": false,
+      "sendingTime": null
+    },
+    {
+      "id": "refund_create",
+      "apiType": "rest",
+      "name": "Create Refund",
+      "description": "Refund a payment transaction partially or fully",
+      "httpRequestModel": {
+        "method": "post",
+        "url": "https://api.example.com/v1/refunds",
+        "headers": [
+          {"name": "Content-Type", "value": "application/json"},
+          {"name": "Authorization", "value": "Bearer YOUR_API_KEY"}
+        ],
+        "params": [],
+        "isHeaderEnabledList": [true, true],
+        "isParamEnabledList": [],
+        "bodyContentType": "json",
+        "body": "{\n  \"payment_id\": \"pay_28s9dj29djw9\",\n  \"amount\": 49.99,\n  \"reason\": \"customer_requested\",\n  \"metadata\": {\n    \"return_id\": \"ret_123\"\n  }\n}",
+        "query": null,
+        "formData": null
+      },
+      "responseStatus": 200,
+      "message": "Refund processed successfully",
+      "httpResponseModel": {
+        "statusCode": 200,
+        "headers": {
+          "Content-Type": "application/json",
+          "Content-Length": "328",
+          "Request-Id": "req_Pqw83JkloP3VT"
+        },
+        "requestHeaders": {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer YOUR_API_KEY"
+        },
+        "body": "{\n  \"id\": \"ref_98jsd98j98js\",\n  \"object\": \"refund\",\n  \"amount\": 49.99,\n  \"currency\": \"USD\",\n  \"payment_id\": \"pay_28s9dj29djw9\",\n  \"status\": \"succeeded\",\n  \"reason\": \"customer_requested\",\n  \"metadata\": {\n    \"return_id\": \"ret_123\"\n  },\n  \"created_at\": \"2025-04-29T09:15:45Z\"\n}",
+        "formattedBody": "{\n  \"id\": \"ref_98jsd98j98js\",\n  \"object\": \"refund\",\n  \"amount\": 49.99,\n  \"currency\": \"USD\",\n  \"payment_id\": \"pay_28s9dj29djw9\",\n  \"status\": \"succeeded\",\n  \"reason\": \"customer_requested\",\n  \"metadata\": {\n    \"return_id\": \"ret_123\"\n  },\n  \"created_at\": \"2025-04-29T09:15:45Z\"\n}",
+        "bodyBytes": null,
+        "time": 178000
+      },
+      "isWorking": false,
+      "sendingTime": null
+    },
+    {
+      "id": "payment_list",
+      "apiType": "rest",
+      "name": "List Payments",
+      "description": "Retrieve a paginated list of payments",
+      "httpRequestModel": {
+        "method": "get",
+        "url": "https://api.example.com/v1/payments",
+        "headers": [
+          {"name": "Authorization", "value": "Bearer YOUR_API_KEY"}
+        ],
+        "params": [
+          {"name": "limit", "value": "10"},
+          {"name": "offset", "value": "0"},
+          {"name": "customer_id", "value": "cust_9876"}
+        ],
+        "isHeaderEnabledList": [true],
+        "isParamEnabledList": [true, true, true],
+        "bodyContentType": "json",
+        "body": null,
+        "query": "limit=10&offset=0&customer_id=cust_9876",
+        "formData": null
+      },
+      "responseStatus": 200,
+      "message": "Payments retrieved successfully",
+      "httpResponseModel": {
+        "statusCode": 200,
+        "headers": {
+          "Content-Type": "application/json",
+          "Content-Length": "976",
+          "Request-Id": "req_Axc32JpoZ3YT"
+        },
+        "requestHeaders": {
+          "Authorization": "Bearer YOUR_API_KEY"
+        },
+        "body": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"id\": \"pay_28s9dj29djw9\",\n      \"object\": \"payment\",\n      \"amount\": 49.99,\n      \"currency\": \"USD\",\n      \"status\": \"succeeded\",\n      \"customer_id\": \"cust_9876\",\n      \"created_at\": \"2025-04-29T08:45:23Z\"\n    },\n    {\n      \"id\": \"pay_87asd7a9sd7\",\n      \"object\": \"payment\",\n      \"amount\": 129.99,\n      \"currency\": \"USD\",\n      \"status\": \"succeeded\",\n      \"customer_id\": \"cust_9876\",\n      \"created_at\": \"2025-04-15T14:32:11Z\"\n    }\n  ],\n  \"has_more\": false,\n  \"total_count\": 2,\n  \"url\": \"/v1/payments\"\n}",
+        "formattedBody": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"id\": \"pay_28s9dj29djw9\",\n      \"object\": \"payment\",\n      \"amount\": 49.99,\n      \"currency\": \"USD\",\n      \"status\": \"succeeded\",\n      \"customer_id\": \"cust_9876\",\n      \"created_at\": \"2025-04-29T08:45:23Z\"\n    },\n    {\n      \"id\": \"pay_87asd7a9sd7\",\n      \"object\": \"payment\",\n      \"amount\": 129.99,\n      \"currency\": \"USD\",\n      \"status\": \"succeeded\",\n      \"customer_id\": \"cust_9876\",\n      \"created_at\": \"2025-04-15T14:32:11Z\"\n    }\n  ],\n  \"has_more\": false,\n  \"total_count\": 2,\n  \"url\": \"/v1/payments\"\n}",
+        "bodyBytes": null,
+        "time": 215000
+      },
+      "isWorking": false,
+      "sendingTime": null
+    }
+  ]
+}
